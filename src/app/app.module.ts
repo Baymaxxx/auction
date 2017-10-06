@@ -11,6 +11,10 @@ import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { HomeComponent } from './home/home.component';
+import { ProductService } from './shared/product.service';
+import { LoggerService } from './shared/logger.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,13 +26,17 @@ import { HomeComponent } from './home/home.component';
     ProductComponent,
     StarsComponent,
     ProductDetailComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ ProductService, LoggerService ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}

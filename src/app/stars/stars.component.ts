@@ -1,14 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-stars',
   templateUrl: './stars.component.html',
-  styleUrls: ['./stars.component.scss']
+  styleUrls: [ './stars.component.scss' ]
 })
 export class StarsComponent implements OnInit {
-  @Input()
-  rating: number;
+  @Input() rating: number;
+  @Output() ratingChange: EventEmitter<number> = new EventEmitter();
   stars: boolean[];
+  @Input() readonly: boolean = true;
 
   constructor() {
   }
@@ -20,4 +21,11 @@ export class StarsComponent implements OnInit {
     }
   }
 
+  clickStar(i: number) {
+    if (!this.readonly) {
+      this.rating = i + 1;
+      this.ngOnInit();
+      this.ratingChange.emit(this.rating);
+    }
+  }
 }
