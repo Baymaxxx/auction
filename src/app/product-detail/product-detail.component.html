@@ -13,7 +13,8 @@
   </div>
 </div>
 <div class="well">
-  <div>
+  <div class="btn btn-success" (click)="isCommentHidden = !isCommentHidden">发表评论</div>
+  <div [hidden]="isCommentHidden">
     <div><app-stars [(rating)]="newRating" [readonly]="false"></app-stars></div>
     <div>
       <textarea [(ngModel)]="newComment" cols="30" rows="10"></textarea>
