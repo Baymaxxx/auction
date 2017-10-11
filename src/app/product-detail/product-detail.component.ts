@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product, Comment, ProductService } from '../shared/product.service';
 @Component({
@@ -10,11 +10,15 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product;
   comments: Comment[];
-  newRating: number = 5;
-  newComment: string = '';
+  newRating: number;
+  newComment: string;
+  isCommentHidden: boolean;
 
   constructor(private routeInfo: ActivatedRoute,
               private productService: ProductService) {
+    this.newRating = 5;
+    this.newComment = '';
+    this.isCommentHidden = true;
   }
 
   ngOnInit() {
@@ -26,6 +30,12 @@ export class ProductDetailComponent implements OnInit {
 
   addComment() {
     let comment = new Comment(0, this.product.id, new Date().toISOString(), 'someone', this.newRating, this.newComment);
-    this.comments.push(comment);
+    this.comments.unshift(comment);
+    let sum = this.comments.reduce((sum, comment) => sum + comment.rating, 0);
+    this.product.rating = sum / this.comments.length;
+    this.newComment = '';
+    this.newRating = 5;
+    this.isCommentHidden = true;
   }
+
 }
