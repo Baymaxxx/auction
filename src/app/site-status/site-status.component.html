@@ -1,0 +1,19 @@
+<div class="panel" *ngIf="siteStatusShow">
+    <div class="panel-heading">
+        <img src="../../assets/image/ybp.png" class="head-i"/>网站状态
+        <img src="../../assets/image/close.png" class="close-i pull-right" (click)="closeSiteStatus()"/>
+    </div>
+    <ul class="inner" >
+      <li>访问总数：{{siteStatus.visitors}}</li>
+      <li>文章总数：{{siteStatus.articles}}</li>
+      <li>评论总数：{{siteStatus.comments}}</li>
+      <li>会员总数：{{siteStatus.users}}</li>
+      <li>在线访客：{{siteStatus.onlineNum}}</li>
+      <li>在线会员：{{siteStatus.onlineUsers}}</li>
+      <li>在线记录：{{siteStatus.maxOnlineNum}}</li>
+      <li>时间 <span>{{siteStatus.maxOnlineTime | date:"HH:mm:ss"}}</span></li>
+    </ul>
+  </div>
+  <div  class="panel panel-hide" *ngIf="!siteStatusShow" (click)="closeSiteStatus()">
+      《展开      
+  </div>

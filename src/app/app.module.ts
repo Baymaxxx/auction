@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,7 @@ import { ProductService } from './shared/product.service';
 import { LoggerService } from './shared/logger.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './pipe/filter.pipe';
+import { SiteStatusComponent } from './site-status/site-status.component';
 
 @NgModule({
   declarations: [
@@ -27,16 +29,18 @@ import { FilterPipe } from './pipe/filter.pipe';
     StarsComponent,
     ProductDetailComponent,
     HomeComponent,
-    FilterPipe
+    FilterPipe,
+    SiteStatusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [ ProductService, LoggerService ],
-  bootstrap: [ AppComponent ]
+  providers: [ProductService, LoggerService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
